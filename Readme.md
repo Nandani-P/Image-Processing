@@ -36,7 +36,7 @@ For Windows: use py -2.7 instead of python
 
 # To run naiveBayes on digit and face data
 
-python dataClassifier.py -c naiveBayes -d digits
+python dataClassifier.py -c naiveBayes
 python dataClassifier.py -c naiveBayes -d faces  
 
 # To run naiveBayes with the advanced feature (-f) and testing data of 1000 (-t 1000) 
@@ -51,7 +51,7 @@ python dataClassifier.py -c perceptron -d faces
 
 # To run perceptron algo with advanced feature
 
-python dataClassifier.py -c perceptron -d digits -f 
+python dataClassifier.py -c perceptron -f 
 python dataClassifier.py -c perceptron -d faces -f
 
 # To run mira
