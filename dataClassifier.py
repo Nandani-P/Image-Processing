@@ -108,7 +108,7 @@ def enhancedFeatureExtractorFace(datum):
   Your feature extraction playground for faces.
   It is your choice to modify this.
   """
-  f_block = 2
+  f_block = 4
   features = util.Counter()
   for x in range(0, FACE_DATUM_WIDTH, f_block):
     for y in range(0, FACE_DATUM_HEIGHT, f_block):

@@ -58,3 +58,9 @@ python dataClassifier.py -c perceptron -d faces -f
 python dataClassifier.py -c mira
   
 
+To change the feature option: -
+1. In the dataClassifier.py file, functions enhancedFeatureExtractorFace() and enhancedFeatureExtractorDigit() 
+can be updated with different features and block size
+2. To change the block size update f_block variable
+3. To test with another feature uncomment lines from line number(122 to 131) and (86 to 95) 
+
