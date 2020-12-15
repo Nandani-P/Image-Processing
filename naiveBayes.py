@@ -99,6 +99,8 @@ class NaiveBayesClassifier(classificationMethod.ClassificationMethod):
                     datum = trainingData[i]
                     # print "label ", legalLabel
                     # print "datum[feat] ", datum[feat]
+                    
+                    #number of pixels in a feature
                     columnOption = datum[feat]
 
                     # if (columnOption == 0){
@@ -198,6 +200,3 @@ class NaiveBayesClassifier(classificationMethod.ClassificationMethod):
 
     return featuresOdds
     
-
-    
-      
