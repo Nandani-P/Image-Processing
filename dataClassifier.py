@@ -70,6 +70,8 @@ def enhancedFeatureExtractorDigit(datum):
   # features =  basicFeatureExtractorDigit(datum)
 
   #"*** YOUR CODE HERE ***"
+
+  # "feature are defined in terms of block of size f_block* f_block"
   f_block = 4
   features = util.Counter()
   for x in range(0, DIGIT_DATUM_WIDTH, f_block):
@@ -80,7 +82,7 @@ def enhancedFeatureExtractorDigit(datum):
 
   return features
 
-  # 1 feature is equal to 1 row
+  # " One feature is equal to one row of an image"
   # a = datum.getPixels()
 
   # features = util.Counter()
@@ -115,6 +117,18 @@ def enhancedFeatureExtractorFace(datum):
           features[(x,y)] += 1
 
   return features
+
+  # " One feature is equal to one row of an image"
+  # a = datum.getPixels()
+
+  # features = util.Counter()
+  # for x in range(FACE_DATUM_WIDTH):
+  #   for y in range(FACE_DATUM_HEIGHT):
+  #     if datum.getPixel(x, y) > 0:
+  #       features[x] += 1
+  #     # else:
+  #     #   features[(x,y)] = 0
+  # return features
 
 def analysis(classifier, guesses, testLabels, testData, rawTestData, printImage):
   """

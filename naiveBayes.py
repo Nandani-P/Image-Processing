@@ -64,7 +64,6 @@ class NaiveBayesClassifier(classificationMethod.ClassificationMethod):
     """
 
     # "*** YOUR CODE HERE ***"
-    # util.raiseNotDefined()
 
     # 1 = face , 0 = no-face
     # count total training labels - for each legal value
@@ -85,13 +84,6 @@ class NaiveBayesClassifier(classificationMethod.ClassificationMethod):
         for feat in self.features:
             # feat can be (x,y)
             featureOptionsCounter = util.Counter()
-            # x = 0
-
-            # featureOptionsCounter[0] += 1
-            # featureOptionsCounter[0] += 1
-            # featureOptionsCounter.normalize()
-            # posteriorrint("featureOptionsCounter ", featureOptionsCounter[0])
-            # print("featureOptionsCounter totalCount", featureOptionsCounter.totalCount())
 
             # featureOptions = []
             for i in range(len(trainingLabels)):
@@ -103,33 +95,15 @@ class NaiveBayesClassifier(classificationMethod.ClassificationMethod):
                     #number of pixels in a feature
                     columnOption = datum[feat]
 
-                    # if (columnOption == 0){
-                    #     featureOptionsCounter[0] += 1
-                    # } else (columnOption == 1){
-                    #     featureOptionsCounter[1] += 1
-                    # }
-
                     featureOptionsCounter[columnOption] += 1
-                    # x = x + 1
-                    # print("featureOptionsCounter totalCount", featureOptionsCounter.totalCount())
-
-            # if (x>1):
-            #     print "x", x
-            
-
+                
+            # Getting the probability using normalize function
             featureOptionsCounter.normalize()
-            # print "featureOptionsCounter totalCount", featureOptionsCounter.totalCount()
-            # print("featureOptionsCounter[0]", featureOptionsCounter[0])
+       
             featureProbablityTable[feat] = featureOptionsCounter
 
         self.legalLabelProbablity[legalLabel] = featureProbablityTable
-    # for ww in self.featureProbablityTable.keys():
-        # print ww.totalCount()
-        # print self.featureProbablityTable[ww][0]
-        # sys.stdout.write(self.featureProbablityTable[ww].totalCount())
-
-
-    # "*** YOUR CODE HERE ***"
+   
     # util.raiseNotDefined()
 
 
@@ -167,12 +141,14 @@ class NaiveBayesClassifier(classificationMethod.ClassificationMethod):
             currentFeatureVal = datum[feat]
             featureProbablityTable = self.legalLabelProbablity[legalLabel]
             featureOptionsRow = featureProbablityTable[feat]
+
+            # In case of no value or zero probability, use 0.001
             if featureOptionsRow[currentFeatureVal] == 0 :
                 xProb = xProb * 0.001                
             else:
                 xProb = xProb * featureOptionsRow[currentFeatureVal]
 
-        # add prior probablity
+        # multiply prior probablity
         xProb = xProb * self.totalLabelCounter[legalLabel]
 
         logJoint[legalLabel] = xProb

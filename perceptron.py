@@ -51,6 +51,7 @@ class PerceptronClassifier:
     # Initialise weights for every feature of a label
     for label in self.legalLabels:
 
+    # Initialize the weights (can update the range for testing)
       for feat in self.features:
         self.weights[label][feat] = random.randint(1,2)
       self.weights[label]['w0'] = random.randint(1,2)
@@ -68,8 +69,6 @@ class PerceptronClassifier:
 
           for feat in self.features:
             datum = trainingData[i]
-            # print "label ", legalLabel
-            # print "datum[feat] ", datum[feat]
                     
             #number of pixels in a feature
             numOfPixels = datum[feat]
@@ -95,6 +94,7 @@ class PerceptronClassifier:
 
         # Digit condition
         else:
+          # Initialize fList which stores perceptron for every digit (0 - 9)
           fList = util.Counter()
           for label in self.legalLabels:
 
