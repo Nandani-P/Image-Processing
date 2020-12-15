@@ -67,11 +67,31 @@ def enhancedFeatureExtractorDigit(datum):
   
   ##
   """
-  features =  basicFeatureExtractorDigit(datum)
+  # features =  basicFeatureExtractorDigit(datum)
 
-  "*** YOUR CODE HERE ***"
-  
+  #"*** YOUR CODE HERE ***"
+  f_block = 4
+  features = util.Counter()
+  for x in range(0, DIGIT_DATUM_WIDTH, f_block):
+    for y in range(0, DIGIT_DATUM_HEIGHT, f_block):
+      for z in range(f_block):
+        if datum.getPixel(x+z, y+z) > 0:
+          features[(x,y)] += 1
+
   return features
+
+  # 1 feature is equal to 1 row
+  # a = datum.getPixels()
+
+  # features = util.Counter()
+  # for x in range(DIGIT_DATUM_WIDTH):
+  #   for y in range(DIGIT_DATUM_HEIGHT):
+  #     if datum.getPixel(x, y) > 0:
+  #       features[x] += 1
+  #     # else:
+  #     #   features[(x,y)] = 0
+  # return features
+
 
 
 def contestFeatureExtractorDigit(datum):
@@ -86,7 +106,14 @@ def enhancedFeatureExtractorFace(datum):
   Your feature extraction playground for faces.
   It is your choice to modify this.
   """
-  features =  basicFeatureExtractorFace(datum)
+  f_block = 2
+  features = util.Counter()
+  for x in range(0, FACE_DATUM_WIDTH, f_block):
+    for y in range(0, FACE_DATUM_HEIGHT, f_block):
+      for z in range(f_block):
+        if datum.getPixel(x+z, y+z) > 0:
+          features[(x,y)] += 1
+
   return features
 
 def analysis(classifier, guesses, testLabels, testData, rawTestData, printImage):
