@@ -126,20 +126,19 @@ class MiraClassifier:
           C = 0.1
           if predictedKey != trainingLabels[i]:
             # find T
-            T = util.Counter()
               
             for feat in self.features:
               numerator = (self.weights[predictedKey][feat] - self.weights[trainingLabels[i]][feat]) * datum[feat] + 1
               denominator = 2 * datum[feat] * datum[feat]
-              T[feat] = min(numerator/denominator, C)
+              T = min(numerator/denominator, C)
 
               datum = trainingData[i]
                                    
               #number of pixels in a feature
               numOfPixels = datum[feat]
 
-              self.weights[predictedKey][feat] = self.weights[predictedKey][feat] - numOfPixels * T[feat]
-              self.weights[trainingLabels[i]][feat] = self.weights[trainingLabels[i]][feat] + numOfPixels * T[feat]
+              self.weights[predictedKey][feat] = self.weights[predictedKey][feat] - numOfPixels * T
+              self.weights[trainingLabels[i]][feat] = self.weights[trainingLabels[i]][feat] + numOfPixels * T
 
             self.weights[predictedKey]["w0"] = self.weights[predictedKey]["w0"] - 1
             self.weights[trainingLabels[i]]["w0"] = self.weights[trainingLabels[i]]["w0"] + 1
