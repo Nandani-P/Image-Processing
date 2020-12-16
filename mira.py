@@ -55,6 +55,83 @@ class MiraClassifier:
     representing a vector of values.
     """
     "*** YOUR CODE HERE ***"
+    # Initialise weights for every feature of a label
+    for label in self.legalLabels:
+
+    # Initialize the weights (can update the range for testing)
+      for feat in self.features:
+        self.weights[label][feat] = random.randint(1,2)
+      self.weights[label]['w0'] = random.randint(1,2)
+      
+
+    for iteration in range(self.max_iterations):
+      print "Starting iteration ", iteration, "..."
+      for i in range(len(trainingData)):
+        "*** YOUR CODE HERE ***"
+        if len(self.legalLabels) == 2:
+          # face case
+          label = 1
+
+          f = self.weights[label]['w0'] 
+
+          for feat in self.features:
+            datum = trainingData[i]
+                    
+            #number of pixels in a feature
+            numOfPixels = datum[feat]
+
+            f = f + numOfPixels * self.weights[label][feat]
+
+          # face condition 
+          if (f >= 0 and trainingLabels[i] == label):
+            continue;
+
+          elif (f < 0 and trainingLabels[i] != label):
+            continue;
+
+          elif (f >= 0 and trainingLabels[i] != label):
+            self.weights[label]['w0'] = self.weights[label]['w0'] - 1
+            for feat in self.features:
+              self.weights[label][feat] = self.weights[label][feat] - trainingData[i][feat]
+
+          elif (f < 0 and trainingLabels[i] != label):
+            self.weights[label]['w0'] = self.weights[label]['w0'] + 1
+            for feat in self.features:
+              self.weights[label][feat] = self.weights[label][feat] + trainingData[i][feat]
+
+        # Digit condition
+        else:
+          # Initialize fList which stores perceptron for every digit (0 - 9)
+          fList = util.Counter()
+          for label in self.legalLabels:
+
+            f = self.weights[label]['w0'] 
+
+            for feat in self.features:
+              datum = trainingData[i]
+                                   
+              #number of pixels in a feature
+              numOfPixels = datum[feat]
+
+              f = f + numOfPixels * self.weights[label][feat]
+            fList[label] = f
+
+          # check max and update weights
+          predictedKey = fList.argMax()
+
+          if predictedKey != trainingLabels[i]:
+            for feat in self.features:
+              datum = trainingData[i]
+                                   
+              #number of pixels in a feature
+              numOfPixels = datum[feat]
+
+              self.weights[predictedKey][feat] = self.weights[predictedKey][feat] - numOfPixels
+              self.weights[trainingLabels[i]][feat] = self.weights[trainingLabels[i]][feat] + numOfPixels
+
+            self.weights[predictedKey]["w0"] = self.weights[predictedKey]["w0"] - 1
+            self.weights[trainingLabels[i]]["w0"] = self.weights[trainingLabels[i]]["w0"] + 1
+
     util.raiseNotDefined()
 
   def classify(self, data ):

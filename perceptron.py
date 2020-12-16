@@ -122,8 +122,8 @@ class PerceptronClassifier:
               self.weights[predictedKey][feat] = self.weights[predictedKey][feat] - numOfPixels
               self.weights[trainingLabels[i]][feat] = self.weights[trainingLabels[i]][feat] + numOfPixels
 
-            self.weights[predictedKey]["w0"] = self.weights[predictedKey]["w0"] - numOfPixels
-            self.weights[trainingLabels[i]]["w0"] = self.weights[trainingLabels[i]]["w0"] + numOfPixels
+            self.weights[predictedKey]["w0"] = self.weights[predictedKey]["w0"] - 1
+            self.weights[trainingLabels[i]]["w0"] = self.weights[trainingLabels[i]]["w0"] + 1
 
 #    util.raiseNotDefined()
    
