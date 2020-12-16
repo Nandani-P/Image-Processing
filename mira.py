@@ -128,6 +128,11 @@ class MiraClassifier:
             # find T
               
             for feat in self.features:
+              datum = trainingData[i]
+
+              if datum[feat] == 0:
+                datum[feat] = 0.001
+                
               numerator = (self.weights[predictedKey][feat] - self.weights[trainingLabels[i]][feat]) * datum[feat] + 1
               denominator = 2 * datum[feat] * datum[feat]
               T = min(numerator/denominator, C)
