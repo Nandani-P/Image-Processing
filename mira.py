@@ -55,6 +55,8 @@ class MiraClassifier:
     representing a vector of values.
     """
     "*** YOUR CODE HERE ***"
+    self.features = trainingData[0].keys()
+
     # Initialise weights for every feature of a label
     for label in self.legalLabels:
 
