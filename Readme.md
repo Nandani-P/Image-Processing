@@ -20,6 +20,7 @@ We have worked on three files:
 1. perceptron.py - Implemented a logic of train() function
 2. naiveBayes.py - Implemented a logic of trainAndTune() and calculateLogJointProbabilities() functions
 3. dataClassifier.py - Implemented enhancedFeatureExtractorFace() and enhancedFeatureExtractorDigit() functions
+4. mira.py - Implemented a logic of trainAndTune()
 
 Add options for command to run with various configurations: -
 '-c', '--classifier', choices= ['naiveBayes', 'perceptron', 'mira'], default='mostFrequent'
@@ -41,7 +42,7 @@ python dataClassifier.py -c naiveBayes -d faces
 
 # To run naiveBayes with the advanced feature (-f) and testing data of 1000 (-t 1000) 
 
-python dataClassifier.py  -c naiveBayes -d digits -f -t 1000
+python dataClassifier.py  -c naiveBayes -d digits -f -t 1000 -s 500
 python dataClassifier.py  -c naiveBayes -d faces -f 
 
 # To run perceptron algo on digit and face data 
@@ -56,6 +57,7 @@ python dataClassifier.py -c perceptron -d faces -f
 
 # To run mira
 python dataClassifier.py -c mira
+python dataClassifier.py -c mira -d faces -t 1000 -s 500
   
 
 To change the feature option: -

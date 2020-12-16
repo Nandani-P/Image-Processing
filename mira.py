@@ -22,7 +22,7 @@ class MiraClassifier:
     self.legalLabels = legalLabels
     self.type = "mira"
     self.automaticTuning = False 
-    self.C = 0.005
+    self.C = 0.001
     self.legalLabels = legalLabels
     self.max_iterations = max_iterations
     self.initializeWeightsToZero()
@@ -79,6 +79,14 @@ class MiraClassifier:
 
           for feat in self.features:
             datum = trainingData[i]
+
+            if datum[feat] == 0:
+                datum[feat] = 0.001
+
+            numerator = (self.weights[predictedKey][feat] - self.weights[trainingLabels[i]][feat]) * datum[feat] + 1
+            denominator = 2 * datum[feat] * datum[feat]
+            T = min(numerator/denominator, self.C)
+
                     
             #number of pixels in a feature
             numOfPixels = datum[feat]
@@ -95,12 +103,12 @@ class MiraClassifier:
           elif (f >= 0 and trainingLabels[i] != label):
             self.weights[label]['w0'] = self.weights[label]['w0'] - 1
             for feat in self.features:
-              self.weights[label][feat] = self.weights[label][feat] - trainingData[i][feat]
+              self.weights[label][feat] = self.weights[label][feat] - trainingData[i][feat]* T
 
           elif (f < 0 and trainingLabels[i] != label):
             self.weights[label]['w0'] = self.weights[label]['w0'] + 1
             for feat in self.features:
-              self.weights[label][feat] = self.weights[label][feat] + trainingData[i][feat]
+              self.weights[label][feat] = self.weights[label][feat] + trainingData[i][feat]* T
 
         # Digit condition
         else:
@@ -129,7 +137,7 @@ class MiraClassifier:
               datum = trainingData[i]
 
               if datum[feat] == 0:
-                datum[feat] = 0.001
+                datum[feat] = 0.01
 
               numerator = (self.weights[predictedKey][feat] - self.weights[trainingLabels[i]][feat]) * datum[feat] + 1
               denominator = 2 * datum[feat] * datum[feat]
