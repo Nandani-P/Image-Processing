@@ -56,7 +56,7 @@ def basicFeatureExtractorFace(datum):
         features[(x,y)] = 0
   return features
 
-def     (datum):
+def enhancedFeatureExtractorDigit(datum):
   """
   Your feature extraction playground.
   

@@ -8,6 +8,7 @@
 
 # Mira implementation
 import util
+import random
 PRINT = True
 
 class MiraClassifier:
@@ -134,7 +135,7 @@ class MiraClassifier:
             self.weights[predictedKey]["w0"] = self.weights[predictedKey]["w0"] - 1
             self.weights[trainingLabels[i]]["w0"] = self.weights[trainingLabels[i]]["w0"] + 1
 
-    util.raiseNotDefined()
+    #util.raiseNotDefined()
 
   def classify(self, data ):
     """
