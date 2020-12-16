@@ -22,7 +22,7 @@ class MiraClassifier:
     self.legalLabels = legalLabels
     self.type = "mira"
     self.automaticTuning = False 
-    self.C = 0.001
+    self.C = 0.005
     self.legalLabels = legalLabels
     self.max_iterations = max_iterations
     self.initializeWeightsToZero()
@@ -122,8 +122,6 @@ class MiraClassifier:
           # check max and update weights
           predictedKey = fList.argMax()
 
-           # hard coded constant 
-          C = 0.1
           if predictedKey != trainingLabels[i]:
             # find T
               
@@ -132,10 +130,10 @@ class MiraClassifier:
 
               if datum[feat] == 0:
                 datum[feat] = 0.001
-                
+
               numerator = (self.weights[predictedKey][feat] - self.weights[trainingLabels[i]][feat]) * datum[feat] + 1
               denominator = 2 * datum[feat] * datum[feat]
-              T = min(numerator/denominator, C)
+              T = min(numerator/denominator, self.C)
 
               datum = trainingData[i]
                                    
