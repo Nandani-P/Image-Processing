@@ -66,3 +66,4 @@ can be updated with different features and block size
 2. To change the block size update f_block variable
 3. To test with another feature uncomment lines from line number(122 to 131) and (86 to 95) 
 
+Note: This project is a part of academic assignment given in the "Intro to AI" course at Rutgers University.
